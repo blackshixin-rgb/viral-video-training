@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<!--
+  旋钮：变化度 6 / 动效 1 / 密度 8
+  字阶：14 / 17 / 21 / 26 / 32 / 42
+  间距：4 / 8 / 12 / 16 / 24 / 32 / 48 / 64
+  圆角：0
+  色板：底 #F4F0E6  主 #1B2836  强调 #A8452C  中性 #E5DFD1 #D8D1C0 #BDB5A1 #8A8375 #4A4639
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>爆款视频四讲 培训讲义</title>
+<style>
+  :root{
+    --bg:#F4F0E6; --ink:#1B2836; --red:#A8452C;
+    --n1:#E5DFD1; --n2:#D8D1C0; --n3:#BDB5A1; --n4:#8A8375; --n5:#4A4639;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font:17px/1.7 -apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;padding:48px 40px 64px}
+  a{color:var(--red);text-decoration:none;border-bottom:1px solid var(--n3)}
+  h1{font-size:42px;line-height:1.2;font-weight:800;letter-spacing:1px}
+  h2{font-size:32px;line-height:1.3;font-weight:800}
+  h3{font-size:21px;line-height:1.4;font-weight:700;margin-bottom:8px}
+  .small{font-size:14px;color:var(--n5)}
+  .muted{color:var(--n4)}
+  b,strong{font-weight:700}
+  .red{color:var(--red)}
+
+  /* 封面 */
+  header{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;align-items:end;padding-bottom:32px;border-bottom:3px solid var(--ink)}
+  header .lead{font-size:21px;line-height:1.6;margin-top:16px;color:var(--n5)}
+  .flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--ink)}
+  .flow a{display:block;border:0;border-right:1px solid var(--ink);padding:16px;color:var(--ink)}
+  .flow a:last-child{border-right:0}
+  .flow .q{font-size:17px;font-weight:700;line-height:1.5}
+  .flow .out{margin-top:12px;font-size:14px;color:var(--n5)}
+  .flow .out b{color:var(--red)}
+  .flow a:hover{background:var(--n1)}
+
+  section{padding:48px 0;border-bottom:1px solid var(--n3)}
+  .sec-head{display:flex;align-items:baseline;gap:24px;margin-bottom:24px}
+  .sec-head .goal{font-size:17px;color:var(--n5)}
+
+  .cols{display:grid;gap:32px}
+  .c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .c-5-7{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+  .c-7-5{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+  .cols > div{min-width:0}
+
+  ul,ol{padding-left:24px}
+  li{margin-bottom:4px}
+  p + p, p + ul, p + ol, ul + p, ol + p{margin-top:8px}
+  .block + .block{margin-top:24px}
+  .rule + .block{margin-top:24px}
+
+  table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.6}
+  th{text-align:left;font-weight:700;padding:8px 12px;border-bottom:2px solid var(--ink);vertical-align:bottom}
+  td{padding:8px 12px;vertical-align:top;border-bottom:1px solid var(--n2)}
+  td:first-child{font-weight:700;white-space:nowrap}
+  tr.grp td{border-bottom:2px solid var(--n3)}
+
+  .rule{border-left:4px solid var(--red);padding:12px 16px;background:var(--n1);font-size:17px}
+  .rule .src{display:block;margin-top:4px;font-size:14px;color:var(--n4)}
+
+  /* 第一讲：关键帧 */
+  .frames{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+  .frames figure{min-width:0}
+  .frames img{width:100%;display:block;aspect-ratio:9/16;object-fit:cover;border:1px solid var(--n3)}
+  .frames figcaption{font-size:14px;line-height:1.5;margin-top:8px}
+  .frames figcaption b{display:block;color:var(--red)}
+  .video-row{display:flex;gap:24px;align-items:center;margin-top:16px;font-size:14px;color:var(--n5)}
+
+  /* 第三讲：FABE 横条 */
+  .fabe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+  .fabe > div{padding:16px;border-right:1px solid var(--n3)}
+  .fabe > div:last-child{border-right:0}
+  .fabe .k{font-size:32px;font-weight:800;line-height:1;color:var(--red)}
+  .fabe .n{font-size:17px;font-weight:700;margin-top:8px}
+  .fabe .d{font-size:14px;color:var(--n5);margin-top:4px}
+  .fabe .eg{font-size:14px;margin-top:12px;padding-top:8px;border-top:1px dashed var(--n3)}
+
+  .ladder{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:end;gap:8px}
+  .ladder > div{background:var(--n1);padding:12px;font-size:14px}
+  .ladder > div:nth-child(1){min-height:96px}
+  .ladder > div:nth-child(2){min-height:128px;background:var(--n2)}
+  .ladder > div:nth-child(3){min-height:160px;background:var(--n3)}
+  .ladder > div:nth-child(4){min-height:192px;background:var(--ink);color:var(--bg)}
+  .ladder .lv{font-size:17px;font-weight:700;display:block;margin-bottom:4px}
+
+  /* 第四讲：时间轴 */
+  .timeline{display:grid;grid-template-columns:3fr 4fr 6fr 5fr 3fr;border:1px solid var(--ink)}
+  .timeline > div{padding:12px 16px;border-right:1px solid var(--ink)}
+  .timeline > div:last-child{border-right:0}
+  .timeline > div:first-child{background:var(--red);color:var(--bg)}
+  .timeline .t{font-size:14px;opacity:.8}
+  .timeline .s{font-size:21px;font-weight:800;line-height:1.3}
+  .timeline .w{font-size:14px;margin-top:4px}
+
+  .slogan{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--n3)}
+  .slogan h2{position:absolute;top:48px;left:0}
+  .slogan p{font-size:12vw;line-height:1;font-weight:800;letter-spacing:-2px;white-space:nowrap}
+  .slogan p span{color:var(--red)}
+  footer{padding-top:32px;font-size:14px;color:var(--n5)}
+  footer ol{columns:2;column-gap:48px}
+
+  @media (max-width:1200px){
+    header,.c3,.c-5-7,.c-7-5{grid-template-columns:minmax(0,1fr)}
+    .frames{grid-template-columns:repeat(3,minmax(0,1fr))}
+  }
+  @media (max-width:768px){
+    body{padding:24px 16px}
+    .c2,.flow,.fabe,.ladder,.timeline{grid-template-columns:minmax(0,1fr)}
+    .flow a,.fabe > div,.timeline > div{border-right:0;border-bottom:1px solid var(--ink)}
+    footer ol{columns:1}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>爆款视频四讲</h1>
+    <p class="lead">四节课是一条流水线：先拆别人的爆款，再找人群和痛点，对上产品卖点，最后把三张表组装成可复用的脚本框架。</p>
+    <p class="small" style="margin-top:12px">培训讲义　2026-11-07　短视频带货（抖音、TikTok 通用）</p>
+  </div>
+  <nav class="flow">
+    <a href="#l1"><div class="q">1 如何分析拆解爆款视频</div><div class="out">产出：<b>拆解表</b></div></a>
+    <a href="#l2"><div class="q">2 如何抓人群画像痛点清单</div><div class="out">产出：<b>痛点清单</b></div></a>
+    <a href="#l3"><div class="q">3 如何提炼产品卖点清单</div><div class="out">产出：<b>卖点清单</b></div></a>
+    <a href="#l4"><div class="q">4 如何提炼爆款视频框架</div><div class="out">产出：<b>脚本框架</b></div></a>
+  </nav>
+</header>
+
+<!-- 第一讲 -->
+<section id="l1">
+  <div class="sec-head"><h2>第一讲　拆解爆款视频</h2><span class="goal">拆的是结构和动机，镜头只是表层</span></div>
+
+  <div class="cols c-5-7">
+    <div>
+      <div class="block">
+        <h3>第一步　先确认它真是爆款</h3>
+        <ul>
+          <li>看<b>播放 ÷ 该账号平时的中位播放</b>，或<b>互动 ÷ 粉丝</b>，明显离群才算。大号随手一条几十万播放不算。</li>
+          <li>看发布时间，挑近 7 到 30 天的。</li>
+          <li>优先挑<b>产品、受众、使用场景都清晰</b>的视频，说不清它为什么爆的，拆了也没用。</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>去哪找</h3>
+        <table>
+          <tr><th>平台</th><th>入口</th></tr>
+          <tr><td>抖音</td><td>千川后台营销创意榜（近 7 到 15 天）、巨量创意千川专区、巨量云图素材库</td></tr>
+          <tr><td>第三方</td><td>蝉妈妈、有米、抖音电商罗盘榜单</td></tr>
+          <tr><td>TikTok</td><td>Creative Center 的 Top Ads（免登录可看）、EchoTik、CreatOK 爆款趋势</td></tr>
+        </table>
+      </div>
+      <div class="block">
+        <h3>第二步　拆四层，每层都追问「为什么」</h3>
+        <table>
+          <tr><th>层</th><th>记什么</th><th>追问</th></tr>
+          <tr><td>开头</td><td>前 3 秒的画面和台词</td><td>它在<b>筛谁</b>？为什么让人停下来？</td></tr>
+          <tr><td>画面</td><td>卖点怎么被拍出来</td><td>用什么办法把看不见的效果变成看得见的对比？</td></tr>
+          <tr><td>话术</td><td>金句、情绪</td><td>这是哪种情绪（惊讶、捡漏、怕错过）？换个产品怎么说？</td></tr>
+          <tr><td>背景</td><td>场景、道具、人物</td><td>原生感从哪来？像不像当地普通人的家？</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <h3>课堂案例　骑行面罩，30 秒，约 32.5 万播放，预估 GMV 2.3 万美元</h3>
+      <div class="frames">
+        <figure><img src="img/面罩 1.jpg" alt="雪地摔车"><figcaption><b>0 到 3 秒　钩子</b>雪地摔车，用剧情让人停下</figcaption></figure>
+        <figure><img src="img/面罩 2.jpg" alt="爬起抱怨"><figcaption><b>痛点</b>爬起来举着起雾的镜片抱怨看不清</figcaption></figure>
+        <figure><img src="img/面罩 3.jpg" alt="同伴递面罩"><figcaption><b>产品出场</b>同伴递来面罩，问题在先，所以出场有用途</figcaption></figure>
+        <figure><img src="img/面罩 4.jpg" alt="试戴拉伸"><figcaption><b>演示</b>双手拉开，柔软和弹性变成动作</figcaption></figure>
+        <figure><img src="img/面罩 5.jpg" alt="摸耳朵"><figcaption><b>证明</b>摸脸颊、耳朵、下巴，回答「哪里能遮住」</figcaption></figure>
+        <figure><img src="img/面罩 6.jpg" alt="指向购买"><figcaption><b>促单</b>指向下方购物车，口播低价和包邮</figcaption></figure>
+      </div>
+      <div class="video-row">
+        <a href="骑行面罩 雪地摔车 原片 720p.mp4">打开原片（720p，30 秒）</a>
+        <span>来源：爆款猎人的跨境圈子，2026-11-05 拆解文</span>
+      </div>
+      <div class="rule" style="margin-top:24px">
+        开头的起雾镜片，在结尾的口鼻和镜片特写里得到回应。好的爆款前后是咬合的：<b>开头提出的问题，后面每个镜头都在回答它</b>。
+        <span class="src">拆解要点整理自「拍骑行面罩为什么先拍雪地摔车？」</span>
+      </div>
+      <div class="block">
+        <h3>拆完留下什么</h3>
+        <p>别只存视频，存「下次还能用」的判断。例：平替类产品可以用「别人还没发现」的开头；效果不明显的产品就把效果做成前后对比。一条爆款拆出来的，应该是十几个可组合的拍摄方向。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 第二讲 -->
+<section id="l2">
+  <div class="sec-head"><h2>第二讲　人群画像与痛点清单</h2><span class="goal">同一个产品，换一个人群痛点就变了</span></div>
+
+  <div class="cols c3">
+    <div>
+      <h3>官方人群框架（抖音）</h3>
+      <p><b>巨量 O-5A</b>：O 是机会人群；A1 了解、A2 吸引、A3 种草、A4 购买、A5 复购。按阶段决定素材该干什么：A1 到 A3 素材负责种草，A4 素材负责促单。</p>
+      <p><b>巨量云图八大人群</b>：小镇青年、Z 世代、精致妈妈、新锐白领、资深中产、都市蓝领、小镇中老年、都市银发。覆盖抖音电商八成以上的交易用户和销售额。</p>
+      <p class="small" style="margin-top:12px">用法：看自己的品在哪类人群里 A1 到 A3 转化最高。数据显示「都市蓝领」比预设的「资深中产」转化更好，就该调整定位和素材。</p>
+    </div>
+    <div>
+      <h3>画像要细到一个具体的人</h3>
+      <table>
+        <tr><th>粗</th><th>细</th></tr>
+        <tr><td>美国 25 到 40 岁女性</td><td style="font-weight:400">美国上班族妈妈，早上 7 点要送娃出门，没时间化妆</td></tr>
+        <tr><td>节省时间</td><td style="font-weight:400">送娃到校门口，不想被别的妈妈觉得憔悴</td></tr>
+      </table>
+      <p style="margin-top:12px">动笔前先回答三问：</p>
+      <ol>
+        <li>这个痛点为什么困扰他？</li>
+        <li>他为什么愿意掏钱解决？</li>
+        <li>他平时用什么话描述这个问题？</li>
+      </ol>
+      <p class="small">另加一问：<b>为什么是现在买</b>？季节、热点、涨价，找到这个「现在」。</p>
+    </div>
+    <div>
+      <h3>痛点从哪挖（记原话，别总结）</h3>
+      <ol>
+        <li>淘宝、抖音同款商品的<b>「问大家」</b>和<b>差评</b></li>
+        <li>竞品爆款视频<b>评论区高赞</b></li>
+        <li>小红书、知乎的吐槽帖</li>
+        <li>海外：Amazon 差评、Reddit，攒 50 到 100 条原话做成用户原话库</li>
+      </ol>
+      <div class="rule" style="margin-top:16px">
+        用户不会说「保湿不足」，会说「下午脸就起皮」。钩子和字幕用的是后一句。
+      </div>
+    </div>
+  </div>
+
+  <div class="cols c-7-5" style="margin-top:32px">
+    <div>
+      <h3>痛点清单模板</h3>
+      <table>
+        <tr><th>人群</th><th>场景</th><th>痛点原话</th><th>痛的程度</th><th>现在怎么解决</th><th>哪里不满</th></tr>
+        <tr><td>怕冷的人</td><td>冬天门口</td><td>门缝一直往里灌风</td><td>高（取暖费在涨）</td><td>塞毛巾</td><td>不美观、会掉</td></tr>
+        <tr><td>爱干净的人</td><td>门口地面</td><td>落叶和雨水老往屋里进</td><td>中</td><td>天天扫</td><td>费时间</td></tr>
+        <tr><td>怕虫鼠的人</td><td>夜里</td><td>怕虫子老鼠从门底钻进来</td><td>高</td><td>放药</td><td>有味道、不放心</td></tr>
+      </table>
+      <p class="small" style="margin-top:8px">示例：门缝密封条，一条 34 秒视频，160 万播放，预估 GMV 6.1 万美元。同一道门缝依次拍了气流、落叶、雨水、玩具老鼠，一条视频接住三类人。</p>
+    </div>
+    <div>
+      <h3>痛点最后靠测出来</h3>
+      <p>把痛点一个一个拍成视频去投，投产最高的那个就是最痛的。</p>
+      <p>例：美式咖啡对上班族的痛点是提神，对爱美女生是低卡。拍成两条，分别推给两类人。</p>
+      <div class="rule" style="margin-top:16px">
+        开头钩子想抓所有人，等于一个人都没筛，捞进来的多是「看着好玩」的人。
+        <span class="src">整理自「AI 视频有播放没转化？」</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 第三讲 -->
+<div class="slogan"><h2>第三讲　产品卖点清单</h2><p>Show, <span>Don't talk</span></p></div>
+
+<section id="l3">
+  <div class="sec-head"><h2>第三讲　产品卖点清单</h2><span class="goal">卖点要对上痛点，还要能拍成画面</span></div>
+
+  <div class="fabe">
+    <div><div class="k">F</div><div class="n">特征 Feature</div><div class="d">材质、成分、参数、结构</div><div class="eg">抓绒材质、可拆护目镜</div></div>
+    <div><div class="k">A</div><div class="n">优势 Advantage</div><div class="d">比竞品强在哪</div><div class="eg">普通面罩只遮口鼻，它连耳朵和眼睛一起护住</div></div>
+    <div><div class="k">B</div><div class="n">利益 Benefit</div><div class="d">用户得到什么，用人话讲</div><div class="eg">骑车不冻脸，镜片不起雾，看得清路</div></div>
+    <div><div class="k">E</div><div class="n">证据 Evidence</div><div class="d">数据、检测、对比、买家秀</div><div class="eg">试戴后摸脸、拉伸、指着呼吸孔呼气</div></div>
+  </div>
+
+  <div class="cols c2" style="margin-top:32px">
+    <div>
+      <h3>卖点清单模板</h3>
+      <table>
+        <tr><th>卖点</th><th>对应痛点</th><th>对应人群</th><th>理性证据</th><th>感性一句话</th><th>画面怎么拍</th></tr>
+        <tr><td>防漏</td><td>包里洒水</td><td>通勤族</td><td>倒置 24 小时测试</td><td>扔包里不用管</td><td>水杯直接倒过来</td></tr>
+        <tr><td>吸水</td><td>擦不干</td><td>宝妈</td><td>吸水量对比</td><td>一擦就干</td><td>放进装满水的杯子</td></tr>
+        <tr><td>抗摔</td><td>手机碎屏</td><td>学生</td><td>跌落测试</td><td>摔了也不心疼</td><td>手机直接摔地上</td></tr>
+      </table>
+      <h3 style="margin-top:24px">卖点可视化三招</h3>
+      <table>
+        <tr><td>直接演</td><td>一个动作讲清一个功能，用户看见了才会信</td></tr>
+        <tr><td>测得狠</td><td>把对比拉到极致，让人一眼记住，效果必须真实</td></tr>
+        <tr><td>放进场景</td><td>大容量包在超市结账台装东西，比白底图有说服力</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>卖点讲到第几层（编导四层级）</h3>
+      <div class="ladder">
+        <div><span class="lv">初级</span>卖家自嗨：讲功能。「吸力强，扫得干净」</div>
+        <div><span class="lv">中级</span>买家视角：讲利益。「省出了我的周末」</div>
+        <div><span class="lv">高级</span>场景化：「出差带它，酒店吹风机难用又伤发」</div>
+        <div><span class="lv">顶级</span>人性洞察：「它拯救了我的婚姻」</div>
+      </div>
+      <div class="block" style="margin-top:24px">
+        <h3>三条硬规矩</h3>
+        <ol>
+          <li><b>一条视频 1 个核心卖点</b>，最多再配 2 个辅助卖点。30 秒塞 5 个卖点，观众一个都记不住。</li>
+          <li><b>卖点和购买动机是两回事</b>。老外买牙贴，动机不是「牙白了多少」，是「近距离说话更放心」。CTA 要落在动机上。</li>
+          <li>每个形容词配一个证据，拍不出画面的卖点先放一放。</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 第四讲 -->
+<section id="l4">
+  <div class="sec-head"><h2>第四讲　提炼爆款视频框架</h2><span class="goal">中外通用的五段式，换的只是变量</span></div>
+
+  <div class="timeline">
+    <div><div class="t">0 到 3 秒</div><div class="s">钩子</div><div class="w">筛人群、让人停下</div></div>
+    <div><div class="t">3 到 8 秒</div><div class="s">痛点</div><div class="w">让他认出自己，可以放大一下</div></div>
+    <div><div class="t">8 到 20 秒</div><div class="s">卖点与演示</div><div class="w">一个核心卖点，用动作和场景拍出来</div></div>
+    <div><div class="t">20 到 27 秒</div><div class="s">证明</div><div class="w">对比、实测、买家评价、背书</div></div>
+    <div><div class="t">最后 3 秒</div><div class="s">促单</div><div class="w">落在购买动机上</div></div>
+  </div>
+  <p class="small" style="margin-top:8px">英文圈叫 Hook → Problem → Demo → Proof → Offer → CTA；TikTok 官方 Creative Codes 压成 Hook、Body、Close 三段，并给出数据：90% 的广告记忆效果发生在前 6 秒。时长按 30 秒示意，15 秒版本等比压缩。</p>
+
+  <div class="cols c3" style="margin-top:32px">
+    <div>
+      <h3>钩子五类</h3>
+      <table>
+        <tr><td>痛点型</td><td>「我真的受够了每天……」</td></tr>
+        <tr><td>悬念型</td><td>雪地摔车、先给结果不给原因</td></tr>
+        <tr><td>利益型</td><td>「你以为它要 999？其实只要 39」</td></tr>
+        <tr><td>反差型</td><td>把箱子丢向别人、外貌反差</td></tr>
+        <tr><td>故事型</td><td>「POV：你终于找到了解决 XX 的办法」</td></tr>
+      </table>
+      <p class="small" style="margin-top:8px">存钩子背后的心理。「趁所有人发现之前先买了」记成「提前发现」这一类。</p>
+    </div>
+    <div>
+      <h3>角度池（换角度不换卖点）</h3>
+      <table>
+        <tr><td>卖家视角</td><td>产品讲解、产品进化、回应质疑</td></tr>
+        <tr><td>买家视角</td><td>功能收益、搭配推荐、日常应用、用户故事</td></tr>
+        <tr><td>感性类</td><td>共情、身份认同、价格反转、社交炫耀、痛点轰炸、热点借势</td></tr>
+        <tr><td>权威类</td><td>专家、资质、数据、个人经历背书</td></tr>
+        <tr><td>审美治愈</td><td>ASMR、氛围感大片</td></tr>
+        <tr><td>理性类</td><td>硬核测评、干货教程、竞品对比</td></tr>
+        <tr><td>促销类</td><td>限时福利、稀缺性</td></tr>
+      </table>
+      <p class="small" style="margin-top:8px">据 CreatOK「创意飞轮」的 9 大类整理，表中合并为 7 组。</p>
+    </div>
+    <div>
+      <h3>爆了之后怎么放大</h3>
+      <p>复制几十条同款，系统看来是同一条素材，全卡在学习期。要复制的是背后的成交逻辑：</p>
+      <table style="margin-top:8px">
+        <tr class="grp"><td>换</td><td>钩子、使用场景（家里换成露营、办公室）、讲述视角（测评、吐槽、前后对比）、新人群</td></tr>
+        <tr><td>保留</td><td>核心卖点、卖点出现的顺序、真实感细节（环境、摆放、使用过程）</td></tr>
+      </table>
+      <div class="rule" style="margin-top:16px">
+        框架 = 人群 × 痛点 × 卖点 × 证明方式 × 钩子。把跑通的素材拆成这五个变量存进策略库，新品从库里组合，不用每次从零想。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 附：公众号评估 -->
+<section id="wx">
+  <div class="sec-head"><h2>附　「爆款猎人的跨境圈子」值不值得看</h2><span class="goal">115 篇全读过标题，方法论类逐篇读了正文</span></div>
+  <div class="cols c-5-7">
+    <div>
+      <p><b>结论：有用，适合当案例库，方法论要挑着看。</b></p>
+      <ul style="margin-top:8px">
+        <li>这是跨境 AI 视频工具 CreatOK 的官方号，2025-12-19 到 2026-11-05 共 115 篇，几乎每篇结尾都在推自家功能。</li>
+        <li>最有价值的是 TikTok 美区单品爆款拆解：每篇一条真实视频，逐镜讲钩子、演示、证明。可以直接当第一讲和第四讲的课堂案例。</li>
+        <li>方法论类有 8 篇左右写得扎实，讲的和业内共识一致（筛人群的钩子、一个核心卖点、卖点可视化、换角度放量）。</li>
+        <li>GMV、销量多来自 EchoTik 或 CreatOK 后台的<b>预估值</b>，上课引用时说「预估」。</li>
+        <li>偏跨境和 AI 生成视频；八大人群、千川投放这类抖音内容它不讲，要用前面的通用框架补。</li>
+      </ul>
+    </div>
+    <div>
+      <h3>推荐精读（按对应课时）</h3>
+      <table>
+        <tr><th>课时</th><th>文章</th><th>能拿来讲什么</th></tr>
+        <tr><td>1</td><td><a href="http://mp.weixin.qq.com/s?__biz=MzYzODMyMDE3Mg==&amp;mid=2247485839&amp;idx=1&amp;sn=e30cced5f6e1e652d70a3d1e5ed8934e">做TikTok素材没思路？你缺的是一套素材标准</a></td><td>开头、背景、金句、画面四层拆法</td></tr>
+        <tr><td>1</td><td><a href="http://mp.weixin.qq.com/s?__biz=MzYzODMyMDE3Mg==&amp;mid=2247485639&amp;idx=1&amp;sn=b75ad8ae367eefb55db13b3540cb7cec">TikTok 做内容只有两条路：复刻和原创</a></td><td>挑对标的标准；「前 3 秒在筛谁」</td></tr>
+        <tr><td>1</td><td><a href="https://mp.weixin.qq.com/s/Y0Uhp01GYtrwN2o9QboapA">拍骑行面罩为什么先拍雪地摔车？</a></td><td>本讲义的课堂案例</td></tr>
+        <tr><td>2</td><td><a href="http://mp.weixin.qq.com/s?__biz=MzYzODMyMDE3Mg==&amp;mid=2247485408&amp;idx=1&amp;sn=7a1c5f24499b5fd916af88fd717b598e">AI 视频有播放没转化？</a></td><td>画像要细；卖点和购买动机的区别</td></tr>
+        <tr class="grp"><td>2</td><td><a href="http://mp.weixin.qq.com/s?__biz=MzYzODMyMDE3Mg==&amp;mid=2247486297&amp;idx=1&amp;sn=3eb212a8d9df77eb9b5a935f0b2bd2a7">34 秒的视频爆卖 6.1 万美元：门缝密封条</a></td><td>一条视频接住三类人群</td></tr>
+        <tr><td>3</td><td><a href="http://mp.weixin.qq.com/s?__biz=MzYzODMyMDE3Mg==&amp;mid=2247483931&amp;idx=1&amp;sn=f586d51208394e2e4955517fcbab2e84">电商人别再卖功能了！爆款脚本只卖人性</a></td><td>编导四层级</td></tr>
+        <tr class="grp"><td>3</td><td><a href="http://mp.weixin.qq.com/s?__biz=MzYzODMyMDE3Mg==&amp;mid=2247484112&amp;idx=1&amp;sn=724d22798dd671db3d9e6b350696b24f">为什么你的TikTok视频没人看完？</a></td><td>卖点可视化三招</td></tr>
+        <tr><td>4</td><td><a href="http://mp.weixin.qq.com/s?__biz=MzYzODMyMDE3Mg==&amp;mid=2247485479&amp;idx=1&amp;sn=116dd284fafb37b4f6d62d0af0a23e5d">一条视频跑爆了，别马上复制几十条</a></td><td>放量换什么、保留什么</td></tr>
+        <tr><td>4</td><td><a href="http://mp.weixin.qq.com/s?__biz=MzYzODMyMDE3Mg==&amp;mid=2247484982&amp;idx=1&amp;sn=792830fa88f14ea86b7fa356a19ae1a7">9 大类 × 30+ 角度 × 25 国</a></td><td>角度池全表和例句</td></tr>
+        <tr><td>4</td><td><a href="http://mp.weixin.qq.com/s?__biz=MzYzODMyMDE3Mg==&amp;mid=2247485008&amp;idx=1&amp;sn=c9edc6dce8320cce31fea6e4edbee0eb">义乌 26 块钱的风扇帽</a></td><td>无口播爆款：画面 &gt; 节奏 &gt; 话术</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p style="margin-bottom:8px"><b>出处</b>　事实与框架来自以下公开资料；八大人群名单为业内通行引用，官方白皮书原文未取得。</p>
+  <ol>
+    <li>TikTok Creative Codes 及官方博客 creative best practices（ads.tiktok.com）</li>
+    <li>巨量引擎 × 罗兰贝格《O-5A 人群资产经营方法论》</li>
+    <li>数英、人人都是产品经理：八大人群与 5A、千川素材、FABE 相关文章</li>
+    <li>Jon Loomer：Meta Andromeda 与素材多样化</li>
+    <li>segwise、DTC Daily：用户原话挖掘方法</li>
+    <li>知乎：短视频带货找痛点、拆解同行爆款 SOP</li>
+    <li>公众号「爆款猎人的跨境圈子」115 篇（2025-12-19 至 2026-11-05）</li>
+  </ol>
+</footer>
+
+</body>
+</html>
