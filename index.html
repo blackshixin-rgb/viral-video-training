@@ -70,6 +70,9 @@
   .frames img{width:100%;display:block;aspect-ratio:9/16;object-fit:cover;border:1px solid var(--n3)}
   .frames figcaption{font-size:14px;line-height:1.5;margin-top:8px}
   .frames figcaption b{display:block;color:var(--red)}
+  .case-video{display:grid;grid-template-columns:288px minmax(0,1fr);gap:24px;margin-top:24px;align-items:start}
+  .case-video video{width:100%;aspect-ratio:9/16;display:block;background:var(--ink)}
+  .case-video figcaption{font-size:14px;color:var(--n5);margin-top:8px}
   .video-row{display:flex;gap:24px;align-items:center;margin-top:16px;font-size:14px;color:var(--n5)}
 
   /* 第三讲：FABE 横条 */
@@ -108,6 +111,8 @@
   @media (max-width:1200px){
     header,.c3,.c-5-7,.c-7-5{grid-template-columns:minmax(0,1fr)}
     .frames{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .case-video{grid-template-columns:minmax(0,1fr)}
+    .case-video figure{max-width:360px}
   }
   @media (max-width:768px){
     body{padding:24px 16px}
@@ -178,17 +183,21 @@
         <figure><img src="img/面罩 5.jpg" alt="摸耳朵"><figcaption><b>证明</b>摸脸颊、耳朵、下巴，回答「哪里能遮住」</figcaption></figure>
         <figure><img src="img/面罩 6.jpg" alt="指向购买"><figcaption><b>促单</b>指向下方购物车，口播低价和包邮</figcaption></figure>
       </div>
-      <div class="video-row">
-        <a href="骑行面罩 雪地摔车 原片 720p.mp4">打开原片（720p，30 秒）</a>
-        <span>来源：爆款猎人的跨境圈子，2026-11-05 拆解文</span>
-      </div>
-      <div class="rule" style="margin-top:24px">
+      <div class="case-video">
+        <figure>
+          <video controls playsinline preload="metadata" poster="img/面罩 1.jpg" src="骑行面罩 雪地摔车 原片 720p.mp4"></video>
+          <figcaption>原片 30 秒，点击播放。来源：爆款猎人的跨境圈子，2026-11-05 拆解文</figcaption>
+        </figure>
+        <div>
+      <div class="rule" >
         开头的起雾镜片，在结尾的口鼻和镜片特写里得到回应。好的爆款前后是咬合的：<b>开头提出的问题，后面每个镜头都在回答它</b>。
         <span class="src">拆解要点整理自「拍骑行面罩为什么先拍雪地摔车？」</span>
       </div>
       <div class="block">
         <h3>拆完留下什么</h3>
         <p>别只存视频，存「下次还能用」的判断。例：平替类产品可以用「别人还没发现」的开头；效果不明显的产品就把效果做成前后对比。一条爆款拆出来的，应该是十几个可组合的拍摄方向。</p>
+      </div>
+        </div>
       </div>
     </div>
   </div>
